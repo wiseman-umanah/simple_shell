@@ -1,6 +1,6 @@
 # Our own simple shell
 
-This is our self owned simple shell in C language.
+This is our self owned  coded simple shell project in C language.
 
 ### About
 
