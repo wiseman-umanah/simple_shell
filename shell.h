@@ -35,9 +35,10 @@ typedef struct memory
 * Description: This contains all the information of alias
 */
 
-typedef struct Alias {
-    char name[MAX_ALIAS_NAME_LENGTH];
-    char command[MAX_ALIAS_COMMAND_LENGTH];
+typedef struct Alias
+{
+	char name[MAX_ALIAS_NAME_LENGTH];
+	char command[MAX_ALIAS_COMMAND_LENGTH];
 } Alias;
 
 int isdelimiter(char c, char *delimiter);
