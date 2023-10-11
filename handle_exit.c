@@ -3,7 +3,7 @@
 
 /**
 * handle_exit - handles the exit command
-* @str_input: the exit status
+* @str_input: the exit status of  the code
 */
 
 void handle_exit(char *str_input)

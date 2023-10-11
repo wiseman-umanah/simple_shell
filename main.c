@@ -2,7 +2,7 @@
 
 
 /**
-* main - Entry point for program
+* main - Entry point of program
 * @ac: the number of arguments
 * @av: user's input from terminal
 * Return: always 0
