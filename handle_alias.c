@@ -12,18 +12,39 @@ static AliasRec *memoryalias;
 
 void addAlias(char *name, char *value)
 {
-	AliasRec *record = malloc(sizeof(AliasRec));
+	unsigned long int i;
+	AliasRec *current = memoryalias;
 
-	if (record != NULL)
+	if (current != NULL)
 	{
-		record->name = malloc(strlen(name) + 1);
-		record->command = malloc(strlen(value) + 1);
-		if (record->name == NULL || record->command == NULL)
-			return;
-		strcpy(record->name, name);
-		strcpy(record->command, value);
-		record->next = memoryalias;
-		memoryalias = record;
+		i = strlen(current->name);
+		while (current != NULL)
+		{
+			if (strncmp(name, current->name, i) == 0)
+			{
+				free(current->command);
+				current->command = malloc(strlen(value) + 1);
+				strcpy(current->command, value);
+				return;
+			}
+			current = current->next;
+		}
+	}
+	else
+	{
+		AliasRec *record = malloc(sizeof(AliasRec));
+
+		if (record != NULL)
+		{
+			record->name = malloc(strlen(name) + 1);
+			record->command = malloc(strlen(value) + 1);
+			if (record->name == NULL || record->command == NULL)
+				return;
+			strcpy(record->name, name);
+			strcpy(record->command, value);
+			record->next = memoryalias;
+			memoryalias = record;
+		}
 	}
 }
 
