@@ -19,7 +19,7 @@ This program have exact same output as ```sh``` as well as the exact same error 
 For this program, we have a man page that describes how the code works and its execution installing the man page will
 be very important.
 ```
-$ ./instalMan.sh
+$ sudo ./instalMan.sh
 ```
 This will instantly install the man page for the simple_shell, to view the man page from anywhere in your shell. Run
 ```
