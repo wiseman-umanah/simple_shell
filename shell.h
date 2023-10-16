@@ -10,10 +10,6 @@
 #include <sys/wait.h>
 #include <fcntl.h>
 
-#define MAX_ALIASES 10
-#define MAX_ALIAS_NAME_LENGTH 20
-#define MAX_ALIAS_COMMAND_LENGTH 100
-
 /**
 * struct memory - handles memory allocation for setenv()
 * @data: the name=value
@@ -32,14 +28,15 @@ typedef struct memory
 * struct Alias - handles aliases created during program execution
 * @name: the name of the alias
 * @command: the command to perform
-* Description: This contains all the information of alias
+* @next: Pointer to next node
 */
 
 typedef struct Alias
 {
-	char name[MAX_ALIAS_NAME_LENGTH];
-	char command[MAX_ALIAS_COMMAND_LENGTH];
-} Alias;
+	char *name;
+	char *command;
+	struct Alias *next;
+} AliasRec;
 
 int isdelimiter(char c, char *delimiter);
 char *_strtok(char *str, char *delimiter);
@@ -62,7 +59,12 @@ int custom_cd(char *input);
 void custom_msg(char *com, char *msg);
 long int string_to_int(char *str_number);
 int handle_arguments(int ac, char **av, int *exec_file);
-void expandAlias(char *input);
-void addAlias(const char *name, const char *command);
+void addAlias(char *name, char *value);
+void print_alias(char *str_input);
+void print_all(void);
+void freeAll(void);
+void handle_command(char *str);
+void test_alias(char *str_input);
+void alias_msg(char *value, char *msg);
 
 #endif /*SHELL_H*/

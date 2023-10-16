@@ -32,7 +32,7 @@ int *handle_and_or(char *str_input)
 
 	while (command != NULL)
 	{
-		handle_firstarg(command);
+		handle_command(command);
 		command = _strtok(NULL, "||&&");
 	}
 	return (0);
