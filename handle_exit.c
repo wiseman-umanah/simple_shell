@@ -15,6 +15,7 @@ void handle_exit(char *str_input)
 	com = _strtok(str_input, " ");
 	temp1 = _strtok(NULL, " ");
 	freeAllMemory();
+	freeAll();
 	if (temp1 == NULL)
 	{
 		free(str_input);

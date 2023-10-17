@@ -5,44 +5,72 @@
 .B ./hsh /bin/[command] [option]
 [command] [option]
 .SH COPYRIGHT
-./hsh is Copyright (C) a simple replica of Bash/Unix of the Free Software Foundation, Inc.
+hsh is Copyright (C) a simple replica of Bash/Unix of the Free Software Foundation, Inc.
 .SH DESCRIPTION
 Shell is a user interface to use the services of a computer. 
 Shell: the shell or command interpreter is the computer program 
 that provides a user interface to access the services of the operating system.
 It can be a command-line interface –the one we will build- or graphical user interface, 
 like regular software such as Windows Office.
-.ESAMPLES
+.SS EXAMPLES
 $ ls -la
+.br
 total 60
+.br
 drwxr-xr-x 1 wiseman wiseman   512 Sep  9 12:24 .
+.br
 drwxr-x--- 1 wiseman wiseman   512 Sep  9 12:22 ..
+.br
 -rw-r--r-- 1 wiseman wiseman  2567 Sep  9 12:25 README.md
+.br
 -rw-r--r-- 1 wiseman wiseman   382 Sep  9 12:11 _getenv.c
+.br
 -rwxr-xr-x 1 wiseman wiseman 22080 Sep  9 12:13 a.out
+.br
 -rw-r--r-- 1 wiseman wiseman   221 Sep  9 12:09 free_all.c
+.br
 -rw-r--r-- 1 wiseman wiseman  1554 Sep  9 12:08 handle_cd.c
+.br
 -rw-r--r-- 1 wiseman wiseman   360 Sep  9 12:02 handle_comment.c
+.br
 -rw-r--r-- 1 wiseman wiseman   443 Sep  9 12:00 handle_exit.c
+.br
 -rw-r--r-- 1 wiseman wiseman   541 Sep  9 11:58 handle_firstarg.c
+.br
 -rw-r--r-- 1 wiseman wiseman   313 Sep  9 11:25 handle_msg.c
+.br
 -rw-r--r-- 1 wiseman wiseman   476 Sep  9 11:55 handle_processes.c
+.br
 -rw-r--r-- 1 wiseman wiseman   704 Sep  9 11:53 handle_separator.c
+.br
 -rw-r--r-- 1 wiseman wiseman  1420 Sep  9 11:22 handle_setenv.c
+.br
 -rw-r--r-- 1 wiseman wiseman   779 Sep  9 11:58 handle_unsetenv.c
+.br
 -rw-r--r-- 1 wiseman wiseman  1218 Sep  9 12:13 handle_vars.c
+.br
 -rw-r--r-- 1 wiseman wiseman   501 Sep  9 11:32 main.c
+.br
 -rw-r--r-- 1 wiseman wiseman  1023 Sep  9 12:12 shell.h
+.br
 $
+
 .SH ERRORS
 When typing exit avoid whitespaces to avoid unusual behaviour
-.ESAMPLES
+.SS EXAMPLES
 $ exit<whitespaces without a number as argument>
+.br
 /bin/sh: 1: exit: Illegal number: 
+.br
 $ exit 127 #code will exit properly
+.br
 wiseman@WiseCodes:~/simple_shell$
 .SH AUTHOR
--Written by Wiseman Umanah<wisemanumanah@gmail.com> and Jane Waguthi<waguthijane61@gmail.com>
+-Written by :
+.br
+Wiseman Umanah<wisemanumanah@gmail.com>
+.br
+Jane Waguthi<waguthijane61@gmail.com>
 .SH  BUGS
 There were no errors in the testing time of this code (August, 20 2023).
 .SH SEE ALSO

@@ -15,6 +15,20 @@ gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
 ### Output
 This program have exact same output as ```sh``` as well as the exact same error output. The only difference is when it prints an error, the name of the program is equivalent to ```argv[0]```.
 
+#### Installing The man page
+For this program, we have a man page that describes how the code works and its execution installing the man page will
+be very important.
+```
+$ sudo ./instalMan.sh
+```
+This will instantly install the man page for the simple_shell, to view the man page from anywhere in your shell. Run
+```
+$   man hsh
+```
+or
+```
+$   man 1 hsh
+```
 #### Example of error with ```sh```:
 ```
 $ echo "qwerty" | /bin/sh
@@ -97,3 +111,4 @@ $ Ethio
 [Wiseman Umanah](https://github.com/wiseman-umanah)
 
 [Jane mathenge](https://github.com/codingbot995)
+You can always contact us if bugs are found in the process of running the program
