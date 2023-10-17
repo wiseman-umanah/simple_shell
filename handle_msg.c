@@ -32,8 +32,8 @@ void custom_msg(char *com, char *msg)
 
 /**
 * alias_msg - print the error message for alias
-* @value: the name of the alias
-* @msg: the message to print
+* @value: The name of the alias
+* @msg: The message to print
 */
 void alias_msg(char *value, char *msg)
 {
