@@ -15,17 +15,17 @@ int custom_cd(char *input)
 
 	if (path == NULL)
 	{
-		const char *home_dir = _getenv("HOME");
+		const char *home_dir = getenv("HOME");
 
 		path = (char *)home_dir;
 	}
 	else if (strcmp(path, "-") == 0)
 	{
-		const char *prev_dir = _getenv("OLDPWD");
+		const char *prev_dir = getenv("OLDPWD");
 
 		if (prev_dir == NULL)
 		{
-			 fprintf(stderr, "OLDPWD not set\n");
+			fprintf(stderr, "OLDPWD not set\n");
 			return (-1);
 		}
 		path = (char *)prev_dir;
