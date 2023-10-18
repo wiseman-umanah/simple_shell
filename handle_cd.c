@@ -35,12 +35,12 @@ int custom_cd(char *input)
 		perror(com);
 		return (-1);
 	}
-	if (setenv("PWD", current_dir, 1) == -1)
+	if (chdir(path) == -1)
 	{
 		perror(com);
 		return (-1);
 	}
-	if (chdir(path) == -1)
+	if (setenv("PWD", current_dir, 1) == -1)
 	{
 		perror(com);
 		return (-1);
