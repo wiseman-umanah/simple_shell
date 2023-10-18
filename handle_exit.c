@@ -9,7 +9,7 @@
 void handle_exit(char *str_input)
 {
 	char *com, *temp1;
-	char msg[1000] = "Illegal number: ";
+	char msg[1000];
 	long int i = 0;
 
 	com = _strtok(str_input, " ");
