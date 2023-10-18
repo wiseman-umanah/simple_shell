@@ -19,15 +19,17 @@ void handle_exit(char *str_input)
 	if (temp1 == NULL)
 	{
 		free(str_input);
-		exit(98);
+		exit(0);
 	}
 	else
 	{
 		i = string_to_int(temp1);
 		if (i == 0)
 		{
-			custom_msg(com, strncat(msg, temp1, strlen(temp1)));
-			return;
+			strcpy(msg, "Illegal number: ");
+			 custom_msg(com, msg);
+			   free(str_input);
+			    exit(1);
 		}
 		free(str_input);
 		exit(i);
