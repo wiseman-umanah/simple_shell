@@ -9,19 +9,19 @@
 
 int custom_cd(char *input)
 {
-	char *com = strtok(input, " \t\n");
+	 char *com = strtok(input, " \t\n");
 	char *path = strtok(NULL, " \t\n");
 	char current_dir[1024];
 
 	if (path == NULL)
 	{
-		const char *home_dir = getenv("HOME");
+		 const char *home_dir = getenv("HOME");
 
 		path = (char *)home_dir;
 	}
 	else if (strcmp(path, "-") == 0)
 	{
-		const char *prev_dir = getenv("OLDPWD");
+		 const char *prev_dir = getenv("OLDPWD");
 
 		if (prev_dir == NULL)
 		{
@@ -42,7 +42,7 @@ int custom_cd(char *input)
 	}
 	if (setenv("PWD", current_dir, 1) == -1)
 	{
-		perror(com);
+		 perror(com);
 		return (-1);
 	}
 	return (0);
