@@ -25,7 +25,7 @@ int custom_cd(char *input)
 
 		if (prev_dir == NULL)
 		{
-			custom_msg(com, "OLDPWD not set\n");
+			 fprintf(stderr, "OLDPWD not set\n");
 			return (-1);
 		}
 		path = (char *)prev_dir;
@@ -35,7 +35,7 @@ int custom_cd(char *input)
 		perror(com);
 		return (-1);
 	}
-	if (setenv("OLDPWD", current_dir, 1) == -1)
+	if (setenv("PWD", current_dir, 1) == -1)
 	{
 		perror(com);
 		return (-1);
