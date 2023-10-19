@@ -1,70 +1,104 @@
-#ifndef SHELL_H
-#define SHELL_H
+#ifndef __SHELL_H
+#define __SHELL_H
 
-#include <stdio.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 #include <unistd.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <sys/types.h>
+#include <errno.h>
+#include <stddef.h>
 #include <sys/stat.h>
-#include <sys/wait.h>
 #include <fcntl.h>
+#include <dirent.h>
+#include <signal.h>
+
+#define F_BUFF 1
+#define F_CMD_L 2
+#define F_CMDS 4
 
 /**
-* struct memory - handles memory allocation for setenv()
-* @data: the name=value
-* @next: pointer to the next variable
-* Description: This contains all the information of setenv
-*/
-
-typedef struct memory
+ * struct list_s - singly linked list
+ * @str: string - (malloc'ed string)
+ * @len: length of the string
+ * @next: points to the next node
+ *
+ * Description: singly linked list node structure
+ * for Holberton project
+ */
+typedef struct list_s
 {
-	char *data;
-	struct memory *next;
-} MemoryRecord;
+	char *str;
+	unsigned int len;
+	struct list_s *next;
+} list_t;
 
+size_t print_list(const list_t *h);
+list_t *add_node_end(list_t **head, const char *str);
+void free_list(list_t *head);
 
-/**
-* struct Alias - handles aliases created during program execution
-* @name: the name of the alias
-* @command: the command to perform
-* @next: Pointer to next node
-*/
+char *get_first_av(void);
 
-typedef struct Alias
-{
-	char *name;
-	char *command;
-	struct Alias *next;
-} AliasRec;
+int execute_commands(char *buff, char **cmds_list, char *cmd,
+											int read, char *first_av);
+void handling_semicolon_and_operators(char *buff, int read, char *first_av);
+void handling_or(char *buff_semicolon, int read, char *first_av);
+int handling_and(char *buff_semicolon, int read,
+											char *first_av, int prev_flag);
 
-int isdelimiter(char c, char *delimiter);
+void __attribute__((constructor)) build_dynamic_environ(void);
+void __attribute__((destructor)) free_dynamic_environ(void);
+
+char *_getenv(char *name);
+
+void handle_var_replacement(char **commands);
+int *process_exit_code();
+void set_process_exit_code(int code);
+
+void env(void);
+int _setenv(char *name, char *value);
+int _unsetenv(char *name);
+int _cd(char *path);
+int _alias(char **commands);
+int _help(char **commands);
+int _history(void);
+list_t **get_alias_head();
+list_t **get_history_addrss();
+list_t **get_last_cmd_addrss();
+void handle_history(char *buff);
+void free_history(void);
+void write_history(void);
+void update_count_lines(void);
+int *get_history_lines_count();
+int validate_env_name(char *name);
+int is_valid_env_var_name(char *name);
+int get_env_index(char *name);
+void set_alias(char *alias_pair);
+int is_set_alias(char *alias_pair);
+int handle_alias_args(char **commands, list_t **out_addrs);
+int read_line(const int fd, char **line);
+int f_read_line(char **str, char **line, int fd);
 char *_strtok(char *str, char *delimiter);
+int handle_PATH(char **commands);
+char *getpath(char *dir, char *filename);
+char **parse_user_input(char *str_input, char *delimiter);
+int count_args(char *str_input, char *delimiter);
+void *allocate_memory(unsigned int bytes);
+char *duplicate_string(char *str);
+void free_dbl_ptr(char **dbl_ptr);
+void free_allocs(char *buff, char **cmds_list, char **commands, int flags);
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
+int handle_builtins(char **commands);
+int handle_enter(char **commands);
 char *handle_comment(char *str_input);
-void handle_firstarg(char *str_input);
-void handle_exit(char *str_input);
-void free_all(char **buffer);
-int *handle_semicolon(char *str_input);
-int *handle_and_or(char *str_input);
-int handle_processes(char *command);
-int _setenv(char *str_input);
-void handle_msg(char *com);
-void handle_action(char *name, char *value, int i);
-int _unsetenv(char *str_input);
-void addMemoryRecord(char *data);
-void removeMemoryRecord(char *data);
-void freeAllMemory(void);
-char *_getenv(char *var);
-int custom_cd(char *input);
-void custom_msg(char *com, char *msg);
-long int string_to_int(char *str_number);
-int handle_arguments(int ac, char **av, int *exec_file);
-void addAlias(char *name, char *value);
-void print_alias(char *str_input);
-void print_all(void);
-void freeAll(void);
-void handle_command(char *str);
-void test_alias(char *str_input);
-void alias_msg(char *value, char *msg);
+int handle_exit(char *buff, char **cmds_list, char **commands);
+int get_exit_status(char *buff);
+void dispatch_error(char *msg);
+void print_builtin_error(char *msg, char *arg);
+char *num_to_str(int num);
+char *f_strjoin(char const *s1, char const *s2);
+char *f_strsub(char const *s, unsigned int start, size_t len);
+void f_strdel(char **as);
 
-#endif /*SHELL_H*/
+#endif /* __SHELL_H */

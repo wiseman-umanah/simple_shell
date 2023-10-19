@@ -1,21 +1,18 @@
 #include "shell.h"
 
 /**
-* _getenv - gets the environment variable
-* @var: the variable to grab
-* Return: returns a pointer to the variable
+ * _getenv - Returns a pointer to a env var value
+ * @name: Environment variable name
+ *
+ * Return: Pointer to environment variable value
 */
-
-char *_getenv(char *var)
+char *_getenv(char *name)
 {
 	int i;
 
-	i = 0;
-	while (__environ[i] != NULL)
-	{
-		if (strncmp(__environ[i], var, strlen(var)) == 0)
-			return (&__environ[i][strlen(var) + 1]);
-		i++;
-	}
+	for (i = 0; __environ[i] != NULL; i++)
+		if (strncmp(__environ[i], name, strlen(name)) == 0)
+			return (&__environ[i][strlen(name) + 1]);
+
 	return (NULL);
 }

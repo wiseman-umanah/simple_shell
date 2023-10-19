@@ -4,7 +4,6 @@
 static char *TKN_PTR = "";
 static int NO_INIT_TKN_PTR = 1;
 
-int isdelimiter(char c, char *delimiter);
 
 /**
  * _strtok - Divides a string into tokens
